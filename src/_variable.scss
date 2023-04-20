@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+$app-primary: mat-palette($mat-yellow, 600);
+$app-accent: mat-palette($mat-red, 900);
+$app-warn: mat-palette($mat-red);
+
+$primary: #0AD0F4;
+$accent: #0AD0F4;
+
+:root {
+  --primary: #0AD0F4;
+  --accent: #0AD0F4;
+  --red: #{map_get(mat-palette($mat-red, 500), default)};
+  --green: #{map_get(mat-palette($mat-green, 500), default)};
+}
+

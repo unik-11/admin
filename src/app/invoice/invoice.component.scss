@@ -1,0 +1,112 @@
+body{
+  width: 1000px;
+  margin: 0 auto;
+}
+.header{
+  //background-image: url(../img/logo.png);
+  // background-image: url("../../assets/images/invoice_logo.png");
+  // background-size: cover;
+  // background-position: center;
+  // min-height: 269px;
+  // margin-top: 11px;
+}
+.company-name\&gst {
+  margin-left: 540px;
+}
+.company-name\&gst h2{
+  color: black;
+  padding-top: 129px;
+  font-weight: 600;
+  margin: 0;
+}
+.company-name\&gst h1{
+  color: #004aad;
+  font-weight: 700;
+}
+
+.invoice h2{
+  text-align: center;
+  color: #565354;
+}
+
+.bg-main{
+  background-color: #f1f2f2;
+  border-radius: 5px;
+  padding: 30px 70px;
+
+}
+.time-date{
+  display: flex;
+  justify-content: space-between;
+}
+.custmoer h4{
+  color: #fff;
+  padding: 16px;
+}
+.custmoer{
+ background-color: #0ab7e0;
+ border-radius: 10px 10px 0px 0px;
+
+}
+
+.anme-main{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.name{
+  background-color: #f1f2f2;
+}
+.name-sir{
+  background-color: #f1f2f2;
+}
+.name-sir h4{
+  margin: 0;
+  padding: 20px 650px 10px 20px;
+}
+.name h4{
+  margin: 0;
+  padding: 20px 51px;
+  max-width: 223px;
+}
+.email{
+  background-color: #f1f2f2;
+}
+.email h4{
+
+  margin: 0;
+  padding: 20px 51px;
+  min-width: 230px;
+}
+.email-2 h4{
+  margin: 0;
+  padding: 20px 662px 10px 20px;
+}
+.email-2 {
+  background-color: #f1f2f2;
+}
+
+
+
+.product{
+  background-color: #f1f2f2;
+}
+.product h4{
+
+  margin: 0;
+  padding: 20px 76px 21px 52px;
+  min-width: 229px;
+}
+.despoist h4{
+  margin: 0;
+  padding: 20px 678px 10px 20px;
+}
+.despoist {
+  background-color: #f1f2f2;
+}
+.email-3{
+  max-width: 200px !important ;
+}
+.jifjfg{
+  padding: 20px 551px 10px 20px !important;
+}

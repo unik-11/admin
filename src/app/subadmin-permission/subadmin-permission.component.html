@@ -1,0 +1,50 @@
+<mat-toolbar>
+  <mat-icon>filter_frames</mat-icon>&nbsp;
+  <span>Add Subadmin Permission</span>
+  <span class="fill"></span>
+  <button (click)="add()" mat-icon-button matTooltip="Add">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-toolbar>
+<div class="mat-elevation-z1">
+  <div class="padding bg-white">
+    <div #tt [style.maxHeight]="dataService.getHeight(tt)" class="table-scrollable">
+
+      <form (ngSubmit)="contestDataSubmit(contestForm.value)" #contestForm="ngForm">
+        <table class="table sticky">
+          <tr>
+            <th width="5%">Checkbox</th>
+            <th>Page Name</th>
+            <th>Read Permission</th>
+            <th>Create Or Update Permission</th>
+            <th>Edit</th>
+          </tr>
+          <tbody *ngFor="let d of data;" class="pointer">
+            <tr>
+              <!-- <td *ngIf="!valueExists(d.id)"> -->
+                <!-- <input type="checkbox" value="d.id" [(ngModel)]="d.isSelected" name={{d.id}}> -->
+                <!-- <input type="checkbox" value="d.id" name={{d.id}}>
+              </td> -->
+              <!-- <td *ngIf="valueExists(d.id)">
+                <input type="checkbox" value="d.id" ngModel name={{d.id}} disabled>
+              </td> -->
+              <td><input type="checkbox" value="d.slug" [(ngModel)]="d.isSelected" name={{d.slug}}></td>
+              <td>{{d.page_name}}</td>
+              <td><input type="checkbox" value="d.get" [(ngModel)]="d.isGetSelected" name={{joinStr(d.slug,d.get)}}></td>
+              <td><input type="checkbox" value="d.post" [(ngModel)]="d.isPostSelected" name={{joinStr(d.slug,d.post)}}></td>
+              <td><span (click)="edit(d)" mat-icon-button matTooltip="Edit">
+                <mat-icon>create</mat-icon>
+              </span></td>
+
+            </tr>
+
+          </tbody>
+        </table>
+        <button mat-raised-button color="primary">
+          Add
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+

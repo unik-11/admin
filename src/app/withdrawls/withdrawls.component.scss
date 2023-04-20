@@ -1,0 +1,21 @@
+span.send_pay {
+  width: 98% !important;
+  display: flex;
+  flex-direction: row-reverse;
+}
+mat-progress-spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 5;
+  color: blue;
+  stroke: #0AD0F4 !important;
+  width: 100vh;
+  height: 100vh;
+
+}
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #0AD0F4;
+}
+

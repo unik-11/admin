@@ -1,0 +1,63 @@
+<mat-toolbar>
+  <mat-icon>people</mat-icon>&nbsp;
+  <span>Innfluencer Detail</span>
+  <span class="fill"></span>
+  <!-- <input (delayedInput)="setParams()" [(ngModel)]="search" appDelayInput class="search-input" placeholder="Search..."
+    type="search">
+    <button (click)="exportData()" [disabled]="data.length===0" mat-icon-button matTooltip="Export Data">
+      <mat-icon>file_download</mat-icon>
+    </button> -->
+  <button
+    (click)="exportData()"
+    [disabled]="data.length === 0"
+    mat-icon-button
+    matTooltip="Export Data"
+  >
+    <mat-icon>file_download</mat-icon>
+  </button>
+
+  <button (click)="openFilter()" mat-icon-button matTooltip="Filter">
+    <mat-icon>filter_list</mat-icon>
+  </button>
+</mat-toolbar>
+<div #tt [style.maxHeight]="dataService.getHeight(tt)" class="table-scrollable">
+  <table class="table sticky">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Match Name</th>
+        <th>Entry Fee</th>
+        <th>Amount Received</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data; let index = index" class="pointer">
+        <td>{{ index + 1 + page * perPage }}</td>
+        <td>
+          <div>
+            {{ d.username }}
+          </div>
+          <small>
+            {{ d.email }}
+          </small>
+        </td>
+        <td>
+          {{convertJson(d.fixture_meta_data)?.fixture_name}}
+        </td>
+        <td>
+          {{convertJson(d.contest_meta_data)?.entry_fee}}
+
+        </td>
+        <td>{{d.amount}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    (page)="page = $event.pageIndex; perPage = $event.pageSize; init()"
+    [length]="total"
+    [pageIndex]="page"
+    [pageSizeOptions]="[15, 25, 50, 100]"
+    [pageSize]="perPage"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,342 @@
+<mat-toolbar>
+  <mat-icon>star</mat-icon>&nbsp;
+  <span>Team Edit</span>
+  <span class="fill"></span>
+</mat-toolbar>
+<ng-container>
+  <div class="league_title">
+    <div class="league_inner">
+      <img [(src)]="leagueData['teama_image']" class="img_cls"><br>
+      {{leagueData['teama_short_name']}}({{teamData[leagueData['teama_short_name']]}})
+    </div>
+    <b>Vs</b>
+    <div class="league_inner">
+      <img [(src)]="leagueData['teamb_image']" class="img_cls"><br>
+      {{leagueData['teamb_short_name']}}({{teamData[leagueData['teamb_short_name']]}})
+
+    </div>
+  </div>
+  <span class='center_text'>(Max 5 players from a team)(Creadits Left {{creaditsLeft}}/100)(Total Points {{selecttotal_points}})</span>
+
+</ng-container>
+<span class='error_text'>{{ermessage}}</span>
+<ng-container>
+  <form (ngSubmit)="editTeamDataSubmit(teamchange.value)" #teamchange='ngForm' [(hidden)]="teamEditFrom">
+    <span class="submit_button">
+      <button disabled={{buttonshow}} mat-raised-button color="primary">
+        Continue
+      </button>
+    </span>
+    <mat-tab-group>
+      <mat-tab label="Point-Guard">
+        <span class="Point-Guard">(Select 1-4 Point-Guard){{pgcount}}</span>
+        <div #tt1 [style.maxHeight]="dataService.getHeight(tt1)" class="table-scrollable">
+          <table class="table sticky">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Points</th>
+                <th>Creadits Rating</th>
+                <th>User Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of pgdata">
+                <!-- <td>{{d.user_selected+','+d.team_name+','+d.id+','+d.fantasy_player_rating+','+d.total_points}}</td> -->
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span></td>
+                <td>{{d.total_points}}</td>
+                <td>{{d.fantasy_player_rating}}</td>
+                <td *ngIf="d.user_selected">
+                  <input type="checkbox" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="pgCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+                <td *ngIf="!d.user_selected">
+                  <input type="checkbox" [disabled]="d.isDisabled" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="pgCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Shooting-Guard">
+        <span class="suggestion_text">(Select 1-4 Shooting-Guard){{sgcount}}</span>
+        <div #tt1 [style.maxHeight]="dataService.getHeight(tt1)" class="table-scrollable">
+          <table class="table sticky">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Points</th>
+                <th>Creadits Rating</th>
+                <th>User Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of sgdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span></td>
+                <td>{{d.total_points}}</td>
+                <td>{{d.fantasy_player_rating}}</td>
+                <td>{{d.team_name}}</td>
+                <td *ngIf="d.user_selected">
+                  <input type="checkbox" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="sgCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+                <td *ngIf="!d.user_selected">
+                  <input type="checkbox" [disabled]="d.isDisabled" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="sgCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Small-Forward">
+        <span class="suggestion_text">(Select 1-4 Small-Forward){{sfcount}}</span>
+        <div #tt1 [style.maxHeight]="dataService.getHeight(tt1)" class="table-scrollable">
+          <table class="table sticky">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Points</th>
+                <th>Creadits Rating</th>
+                <th>User Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of sfdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span></td>
+                <td>{{d.total_points}}</td>
+                <td>{{d.fantasy_player_rating}}</td>
+                <td *ngIf="d.user_selected">
+                  <input type="checkbox" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="sfCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+                <td *ngIf="!d.user_selected">
+                  <input type="checkbox" [disabled]="d.isDisabled" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="sfCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Power-Forward">
+        <span class="suggestion_text">(Select 1-4 Power-Forward){{pfcount}}</span>
+        <div #tt1 [style.maxHeight]="dataService.getHeight(tt1)" class="table-scrollable">
+          <table class="table sticky">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Points</th>
+                <th>Creadits Rating</th>
+                <th>User Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of pfdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span></td>
+                <td>{{d.total_points}}</td>
+                <td>{{d.fantasy_player_rating}}</td>
+                <td *ngIf="d.user_selected">
+                  <input type="checkbox" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="pfCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+                <td *ngIf="!d.user_selected">
+                  <input type="checkbox" [disabled]="d.isDisabled" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="pfCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Center">
+        <span class="suggestion_text">(Select 1-4 Center){{cntcount}}</span>
+        <div #tt1 [style.maxHeight]="dataService.getHeight(tt1)" class="table-scrollable">
+          <table class="table sticky">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Total Points</th>
+                <th>Creadits Rating</th>
+                <th>User Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let d of cntdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span></td>
+                <td>{{d.total_points}}</td>
+                <td>{{d.fantasy_player_rating}}</td>
+                <td *ngIf="d.user_selected">
+                  <input type="checkbox" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="cntCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+                <td *ngIf="!d.user_selected">
+                  <input type="checkbox" [disabled]="d.isDisabled" [(ngModel)]="d.user_selected" name={{d.id}}
+                    (change)="cntCheck(d.user_selected,d.team_name,d.id,d.fantasy_player_rating,d.total_points)" />
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+
+  <div class="mat-elevation-z1" [(hidden)]="!teamEditFrom">
+    <div class="padding bg-white">
+      <div #tt [style.maxHeight]="dataService.getHeight(tt)" class="table-scrollable">
+        <button mat-raised-button color="primary" (click)="backUrl()">Back</button>
+        <form (ngSubmit)="editFinalTeamDataSubmit(captchange.value)" #captchange="ngForm">
+          <span class="submit_button">
+            <button mat-raised-button color="primary">
+              Save
+            </button>
+          </span>
+          <table class="table sticky" style="width:50%;">
+            <tbody class="pointer">
+              <tr>
+                <td colspan="4">
+                  <b> Point Guard</b>
+                </td>
+              </tr>
+              <tr>
+                <th width="30%">Name</th>
+                <!-- <th width="3%">Master Player</th> -->
+                <th width="3%">Captain</th>
+                <th width="3%">Vice Captain</th>
+              </tr>
+
+              <tr *ngFor="let d of pgdata;let i = index">
+                <td *ngIf="submitPlayerData[d.id]"><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}}){{(d.mast_selected==1?'M':'')}}</span><span style="color: red;">{{(d.cap_selected==1?'C':d.vic_selected==1?'V':'')}}</span></td>
+
+                <!-- <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="master_player" value={{d.id}} [checked]="d.mast_selected"/>
+                </td> -->
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="captain" value={{d.id}} [(checked)]="d.cap_selected" />
+                </td>
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="vice_captain" value={{d.id}} [(checked)]="d.vic_selected" />
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="7">
+                  <b> Shooting-Guard</b>
+                </td>
+              </tr>
+              <tr>
+                <th width="30%">Name</th>
+                <!-- <th width="3%">Master Player</th> -->
+                <th width="3%">Captain</th>
+                <th width="3%">Vice Captain</th>
+              </tr>
+              <tr *ngFor="let d of sgdata">
+                <td *ngIf="submitPlayerData[d.id]"><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span><span style="color: red;">{{(d.mast_selected==1?'M':d.cap_selected==1?'C':d.vic_selected==1?'V':'')}}</span></td>
+                <!-- <td *ngIf="submitPlayerData[d.id]">
+
+                  <input type="radio" ngModel name="master_player" value={{d.id}} checked={{d.mast_selected}} />
+                </td> -->
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="captain" value={{d.id}} [(checked)]="d.cap_selected" />
+                </td>
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="vice_captain" value={{d.id}} [(checked)]="d.vic_selected" />
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="7">
+                  <b> Small-Forward </b>
+                </td>
+              </tr>
+              <tr>
+                <th width="30%">Name</th>
+                <!-- <th width="3%">Master Player</th> -->
+                <th width="3%">Captain</th>
+                <th width="3%">Vice Captain</th>
+              </tr>
+              <tr *ngFor="let d of sfdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span><span style="color: red;">{{(d.mast_selected==1?'M':d.cap_selected==1?'C':d.vic_selected==1?'V':'')}}</span></td>
+                <!-- <td *ngIf="submitPlayerData[d.id]">
+
+                  <input type="radio" ngModel name="master_player" value={{d.id}} checked={{d.mast_selected}} />
+                </td> -->
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="captain" value={{d.id}} [(checked)]="d.cap_selected" />
+                </td>
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="vice_captain" value={{d.id}} [(checked)]="d.vic_selected" />
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="7">
+                  <b> Power-Forward </b>
+                </td>
+              </tr>
+              <tr>
+                <th width="30%">Name</th>
+                <!-- <th width="3%">Master Player</th> -->
+                <th width="3%">Captain</th>
+                <th width="3%">Vice Captain</th>
+              </tr>
+              <tr *ngFor="let d of pfdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span><span style="color: red;">{{(d.mast_selected==1?'M':d.cap_selected==1?'C':d.vic_selected==1?'V':'')}}</span></td>
+                <!-- <td *ngIf="submitPlayerData[d.id]">
+
+                  <input type="radio" ngModel name="master_player" value={{d.id}} checked={{d.mast_selected}} />
+                </td> -->
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="captain" value={{d.id}} [(checked)]="d.cap_selected" />
+                </td>
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="vice_captain" value={{d.id}} [(checked)]="d.vic_selected" />
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="7">
+                  <b> Center </b>
+                </td>
+              </tr>
+              <tr>
+                <th width="30%">Name</th>
+                <!-- <th width="3%">Master Player</th> -->
+                <th width="3%">Captain</th>
+                <th width="3%">Vice Captain</th>
+              </tr>
+              <tr *ngFor="let d of cntdata">
+                <td><span *ngIf="d.teama_short_name==d.team_name" style="color: blue;">{{d.name}} ({{d.team_name}})</span><span *ngIf="d.teama_short_name!=d.team_name" style="color: green;">{{d.name}} ({{d.team_name}})</span><span style="color: red;">{{(d.mast_selected==1?'M':d.cap_selected==1?'C':d.vic_selected==1?'V':'')}}</span></td>
+                <!-- <td *ngIf="submitPlayerData[d.id]">
+
+                  <input type="radio" ngModel name="master_player" value={{d.id}} checked={{d.mast_selected}} />
+                </td> -->
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="captain" value={{d.id}} [(checked)]="d.cap_selected" />
+                </td>
+                <td *ngIf="submitPlayerData[d.id]">
+                  <input type="radio" ngModel name="vice_captain" value={{d.id}} [(checked)]="d.vic_selected" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-container>

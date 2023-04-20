@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+</head>
+<body>
+  <a [href]="API_URL" target="_blank">
+    <!-- <button mat-icon-button matTooltip="Export Data">
+      <mat-icon>file_download</mat-icon>
+    </button> -->
+    Download
+  </a>
+    <header class="header">
+        <div class="company-name&gst">
+           <h2>GST NO: 09ABECS7440L1ZV</h2>
+           <h1>Sun Surya Fun & Game Pvt.Ltd.</h1>
+        </div>
+    </header>
+
+    <div class="invoice">
+        <h2>INVOICE</h2>
+    </div>
+
+    <div class="time-date">
+        <div class="bg-main">
+            <h5>Date</h5>
+            <h4>{{checkDate(availableData['created_att'])}}</h4>
+        </div>
+        <div class="bg-main">
+            <h5>Invoice No.</h5>
+            <h4>MM11 8{{availableData['invoice_number']}}</h4>
+        </div>
+        <div class="bg-main">
+            <h5>Transaction Id</h5>
+            <h4>{{availableData['transaction_id']}}</h4>
+        </div>
+        <div class="bg-main">
+            <h5>Amount</h5>
+            <h4>{{availableData['amount']}}</h4>
+        </div>
+    </div>
+    <div class="custmoer">
+        <h4>User Details</h4>
+    </div>
+    <div class="anme-main">
+        <div class="name">
+            <h4>User Name</h4>
+        </div>
+        <div class="name-sir">
+            <h4>{{availableData['name']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+        <div class="name">
+            <h4>Customer Phone</h4>
+        </div>
+        <div class="name-sir">
+            <h4>{{availableData['phone']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+        <div class="email ">
+            <h4 class="email-3">Customer Email</h4>
+        </div>
+        <div class=" email-2">
+            <h4 class="jifjfg">{{availableData['email']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+        <div class="product">
+            <h4>Type</h4>
+        </div>
+        <div class="despoist">
+            <h4>{{availableData['type']}}</h4>
+        </div>
+    </div>
+
+
+
+    <div class="custmoer">
+        <h4>Transaction Details</h4>
+    </div>
+    <div class="anme-main">
+        <div class="name">
+            <h4>Payment Gateway</h4>
+        </div>
+        <div class="name-sir">
+            <h4>{{availableData['payment_gateway']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+        <div class="name">
+            <h4>Payment Gateway Transaction id</h4>
+        </div>
+        <div class="name-sir">
+            <h4>{{availableData['reference_id']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+        <div class="email">
+            <h4>Status</h4>
+        </div>
+        <div class=" email-2">
+            <h4>{{availableData['status']}}</h4>
+        </div>
+    </div>
+    <div class="anme-main">
+      <div class="email">
+          <h4>Payment Mode</h4>
+      </div>
+      <div class=" email-2">
+          <h4>{{availableData['payment_mode']}}</h4>
+      </div>
+  </div>
+
+
+
+
+
+
+
+
+</body>
+</html>

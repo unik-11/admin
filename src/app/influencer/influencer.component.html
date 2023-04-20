@@ -1,0 +1,84 @@
+<!-- <mat-spinner></mat-spinner> -->
+<mat-toolbar>
+  <mat-icon>post_add</mat-icon>&nbsp;
+  <span>Influencer Detail</span>
+  <span class="fill"></span>
+  <input (delayedInput)="init()" [(ngModel)]="search" appDelayInput class="search-input" placeholder="Search..."
+  type="search">
+  <button (click)="add()" mat-icon-button matTooltip="Add">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button (click)="exportData()" [disabled]="data.length===0" mat-icon-button matTooltip="Export Data">
+    <mat-icon>file_download</mat-icon>
+  </button>
+</mat-toolbar>
+
+  <!-- <style>
+    .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #0AD0F4 !important;
+}
+  </style> -->
+<div class="uploader-status">
+  <mat-progress-spinner [mode]="'indeterminate'" *ngIf="loading$ | async" ></mat-progress-spinner>
+</div>
+
+<div #tt [style.maxHeight]="dataService.getHeight(tt)" class="table-scrollable">
+  <table class="table sticky">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>User Name</th>
+        <th>Commission</th>
+        <th>Total Referal User</th>
+        <th>Created At</th>
+        <th>Detail</th>
+        <th>Edit</th>
+        <!-- <th>Pin</th> -->
+        <!-- <th>Status</th> -->
+        <!-- <th class="left">Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of data">
+        <td>{{d.name}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.phone}}</td>
+        <td>{{d.username}}</td>
+        <td>{{d.influncer_commission}}</td>
+        <td><a [routerLink]="'/users'" [queryParams]="{ referal_codeid : d.id }">
+          {{d.totaljoin}}</a></td>
+        <td>
+          <div *ngIf="d.influncer_created_at;then content else other_content">here is ignored</div>
+          <ng-template #content>{{d.influncer_created_at | date:'dd MMM hh:mm a'}}</ng-template>
+          <ng-template #other_content>{{d.created_at | date:'dd MMM hh:mm a'}}</ng-template>
+
+        <td>
+          <a [routerLink]="'influencerdetail/'+d.id">
+            <button mat-icon-button matTooltip="Detail">
+              <mat-icon>remove_red_eye</mat-icon>
+            </button>
+          </a>
+        </td>
+        <td>
+          <button (click)="edit(d)" mat-icon-button matTooltip="Edit">
+            <mat-icon>create</mat-icon>
+          </button>
+        </td>
+
+        <!-- <td class="left" *ngIf="admin">
+          <a [routerLink]="'/subadmin-permission/'+d.id" *ngIf="d.role_id!==1">
+              Add Permission
+          </a>
+          <button (click)="remove(d)" mat-icon-button matTooltip="Delete">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td> -->
+      </tr>
+
+    </tbody>
+  </table>
+  <mat-paginator (page)="page=$event.pageIndex;perPage=$event.pageSize;init()" [length]="total" [pageIndex]="page"
+    [pageSizeOptions]="[15, 25, 50, 100]" [pageSize]="perPage"></mat-paginator>
+</div>
