@@ -489,52 +489,52 @@ export class ContestTemplatesComponent {
             },
             hideExpression: '!model.is_dynamic',
           },
-          {
-            key: 'pdf.show',
-            type: 'select-search',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Show',
+          // {
+          //   key: 'pdf.show',
+          //   type: 'select-search',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Show',
 
-              options: [
-                { id: true, name: 'Yes' },
-                { id: false, name: 'No' },
-              ]
-            },
-          },
-          {
-            key: 'pdf.download',
-            type: 'select-search',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Download',
-              options: [
-                { id: true, name: 'Yes' },
-                { id: false, name: 'No' },
-              ]
-            },
-            // expressionProperties: {
-            //   'model.pdf.download': (model: any) => {
-            //     console.log("tttttttttttttt");
-            //     console.log(model);
-            //     //return model.from;
-            //   }
-            // }
-          },
-          {
-            //hideExpression: 'model.pdf.download',
-            //hideExpression: (model, formState) => model.pdf.download ==true,
+          //     options: [
+          //       { id: true, name: 'Yes' },
+          //       { id: false, name: 'No' },
+          //     ]
+          //   },
+          // },
+          // {
+          //   key: 'pdf.download',
+          //   type: 'select-search',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Download',
+          //     options: [
+          //       { id: true, name: 'Yes' },
+          //       { id: false, name: 'No' },
+          //     ]
+          //   },
+          //   // expressionProperties: {
+          //   //   'model.pdf.download': (model: any) => {
+          //   //     console.log("tttttttttttttt");
+          //   //     console.log(model);
+          //   //     //return model.from;
+          //   //   }
+          //   // }
+          // },
+          // {
+          //   //hideExpression: 'model.pdf.download',
+          //   //hideExpression: (model, formState) => model.pdf.download ==true,
 
-            key: 'pdf.message',
-            type: 'input',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Message',
+          //   key: 'pdf.message',
+          //   type: 'input',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Message',
 
-              // type: 'decimal',
-              // min: 0
-            },
-          }
+          //     // type: 'decimal',
+          //     // min: 0
+          //   },
+          // }
         ]
       },
       {

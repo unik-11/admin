@@ -114,16 +114,16 @@ export class ContestCategoriesComponent {
                 floatLabel: 'always'
               }
             },
-            {
-              key: 'is_mini',
-              type: 'toggle',
-              className: 'col-12',
-              defaultValue:false,
-              templateOptions: {
-                label: 'Is Mini',
-                appearance: 'none'
-              }
-            },
+            // {
+            //   key: 'is_mini',
+            //   type: 'toggle',
+            //   className: 'col-12',
+            //   defaultValue:false,
+            //   templateOptions: {
+            //     label: 'Is Mini',
+            //     appearance: 'none'
+            //   }
+            // },
           ]
         },
       ];
@@ -172,7 +172,7 @@ export class ContestCategoriesComponent {
                   required: true,
                   options: this.sports_type
                 }
-                
+
             },
             {
               key: 'sequence_by',
@@ -204,15 +204,15 @@ export class ContestCategoriesComponent {
                 appearance: 'none'
               }
             },
-            {
-              key: 'is_mini',
-              type: 'toggle',
-              className: 'col-12',
-              templateOptions: {
-                label: 'Is Mini',
-                appearance: 'none'
-              }
-            },
+            // {
+            //   key: 'is_mini',
+            //   type: 'toggle',
+            //   className: 'col-12',
+            //   templateOptions: {
+            //     label: 'Is Mini',
+            //     appearance: 'none'
+            //   }
+            // },
           ]
         },
       ];

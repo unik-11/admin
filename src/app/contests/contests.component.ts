@@ -621,49 +621,49 @@ export class ContestsComponent implements OnInit {
             }
 
           },
-          {
-            key: 'pdf.show',
-            type: 'select-search',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Show',
+          // {
+          //   key: 'pdf.show',
+          //   type: 'select-search',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Show',
 
-              options: [
-                { id: true, name: 'Yes' },
-                { id: false, name: 'No' },
-              ]
-            }
-          },
-          {
-            key: 'pdf.download',
-            type: 'select-search',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Download',
+          //     options: [
+          //       { id: true, name: 'Yes' },
+          //       { id: false, name: 'No' },
+          //     ]
+          //   }
+          // },
+          // {
+          //   key: 'pdf.download',
+          //   type: 'select-search',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Download',
 
-              options: [
-                { id: true, name: 'Yes' },
-                { id: false, name: 'No' },
-              ]
-            },
-          },
+          //     options: [
+          //       { id: true, name: 'Yes' },
+          //       { id: false, name: 'No' },
+          //     ]
+          //   },
+          // },
 
-          {
-            // hideExpression: (model, formState) =>{
-            //   this.tempModel=model;
-            //   return model.type === 'PRACTICE'
-            // },
-            key: 'pdf.message',
-            type: 'input',
-            className: 'col-12 col-md-3 col-lg-3',
-            templateOptions: {
-              label: 'Message',
+          // {
+          //   // hideExpression: (model, formState) =>{
+          //   //   this.tempModel=model;
+          //   //   return model.type === 'PRACTICE'
+          //   // },
+          //   key: 'pdf.message',
+          //   type: 'input',
+          //   className: 'col-12 col-md-3 col-lg-3',
+          //   templateOptions: {
+          //     label: 'Message',
 
-              // type: 'decimal',
-              // min: 0
-            },
-             //hideExpression: '!model.pdf.download',
-          },
+          //     // type: 'decimal',
+          //     // min: 0
+          //   },
+          //    //hideExpression: '!model.pdf.download',
+          // },
         ]
       },
 

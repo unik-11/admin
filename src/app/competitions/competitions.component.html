@@ -21,7 +21,7 @@
         <th>Match Format</th>
         <th>Status</th>
         <th>Prize Breakup</th>
-        <th>Influencer Prize Breakup</th>
+        <!-- <th>Influencer Prize Breakup</th> -->
         <th>Is Leaderboard</th>
         <th>Active</th>
         <th>View leaderboard</th>
@@ -43,11 +43,11 @@
             <mat-icon>add</mat-icon>
           </button>
         </td>
-        <td>
+        <!-- <td>
           <button (click)="edit(competition,'influencer')" mat-icon-button matTooltip="Influencer Prize Breakup">
             <mat-icon>add</mat-icon>
           </button>
-        </td>
+        </td> -->
         <td class="center">
           <mat-slide-toggle (change)="update(competition)" [(ngModel)]="competition.is_leaderboard" [ngModelOptions]="{standalone:true}">
           </mat-slide-toggle>
